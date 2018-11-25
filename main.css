@@ -1,0 +1,58 @@
+div {
+    border: 1px solid;
+}
+
+/* Jumbotron */
+.bannerHeader {
+    text-align:center;
+}
+.btn-lg {
+}
+
+/* Post Index */
+.postIndex {
+    height: 100%;
+}
+
+/* Post Bodies */
+.postBodies {
+    height: 100%;
+}
+
+.bodyMain {
+    height:60%;
+}
+
+.entryFormRow {
+    height:20%;
+}
+.container {
+    display: flex;
+    height: 500px;
+}
+
+.postMain {
+    height: 65vh;
+}
+
+/* postBody buttons */
+.bodyButtons {
+    height:20%;
+}
+.bbuttons {
+    display:flex;
+    justify-content:center;
+    margin:30px;
+}
+
+.updateButton {
+    margin-left:80px;
+    margin-right:80px;
+}
+/* //Footer */
+footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}

@@ -12,7 +12,7 @@ const createFormPostBody = document.querySelector('.newPostBody')
 function setDisplay(post){
     display.innerHTML = `
     <div class="postBody" data-id="${post.id}">
-        ${post.title}<br>${post.body}
+        <strong>${post.title}</strong><br>${post.body}
     </div>`
 }
 

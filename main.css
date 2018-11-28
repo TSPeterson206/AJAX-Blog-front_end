@@ -1,26 +1,29 @@
-div {
-    border: 1px solid;
-}
-
 /* Jumbotron */
-.bannerHeader {
+.jumbotron{
     text-align:center;
+    background-image: url('blog.jpg');
+    color:white;
 }
-.btn-lg {
-}
-
 /* Post Index */
 .postIndex {
     height: 100%;
+    border: 2px solid;
+    background-color:lightgray;
 }
 
 .postIndexList {
     font-size:25px;
 }
+.indexHeader {
+    font-size:40px;
+    text-align:center;
+}
 
 /* Post Bodies */
 .postBodies {
     height: 100%;
+    border:2px solid;
+    
 }
 .postBody {
     height:100%;
@@ -29,11 +32,13 @@ div {
 }
 
 .bodyMain {
-    height:60%;
+    height:50%;
 }
 
 .entryFormRow {
-    height:20%;
+    height:30%;
+    border:2px solid;
+    background-color:lightgray;
 }
 .container {
     display: flex;
@@ -55,11 +60,12 @@ div {
 .entryForm {
     text-align:center;
     font-size:14px;
+    width:100%;
 }
 
 /* postBody buttons */
 .bodyButtons {
-    height:20%;
+    height:30%;
 }
 .bbuttons {
     display:flex;
@@ -68,17 +74,12 @@ div {
 }
 
 .createFormButton {
-    float:right;
+    justify-content:right;
+    margin-left:110px;
+    margin-bottom: 120px;
 }
 
 .updateButton {
     margin-left:80px;
     margin-right:80px;
-}
-/* //Footer */
-footer {
-    position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
 }

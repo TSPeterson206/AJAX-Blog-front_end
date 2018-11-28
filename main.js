@@ -6,92 +6,100 @@ const display = document.querySelector('.bodyMain')
 const index = document.querySelector('.postIndex')
 const entryForm = document.querySelector(".entryForm")
 
-// GET THE DATA
-// axios.get('http://localhost:5000/blogs')
-//     .then(result => {
-//         return result.data
-//     })
+const createFormPostTitle = document.querySelector('.newPostTitle')
+const createFormPostBody = document.querySelector('.newPostBody')
+
+function setDisplay(post){
+    display.innerHTML = `
+    <div class="postBody" data-id="${post.id}">
+        ${post.title}<br>${post.body}
+    </div>`
+}
 
 // POPULATE POST LIST
 function init() {
     axios.get('http://localhost:5000/blogs')
         .then(response => {
-            const list = document.querySelector('.postIndexList')
 
-            list.innerHTML = response.data.data.map(ele => `<li>${ele.content}`).join('\n')
+            const allPosts = response.data.data
+            const lastPost = allPosts[allPosts.length - 1]
 
+            // function insertDisplay() {
+                const list = document.querySelector('.postIndexList')
+                list.innerHTML = response.data.data.map(ele => `<li> <a data-id="${ele.id}">${ele.title}</a> </li>`).join('\n')
+                setDisplay(lastPost)
+
+            // }
+            // insertDisplay()
+        })
+    const listBody = document.querySelector('.postIndex')
+    listBody.addEventListener('click',
+        function (event) {
+            if(event.target.tagName !== 'A') return
+
+            const id = event.target.getAttribute('data-id')
+            axios.get(`http://localhost:5000/blogs/${id}`)
+            .then(response => {
+                setDisplay(response.data)
+            })
         })
 }
 
+init()
 // CREATE UPDATE AND REMOVE BUTTONS
 entryForm.addEventListener('submit', function (event) {
     event.preventDefault()
+    const title = document.querySelector('.newPostTitle').value
+    const body = document.querySelector('.newPostBody').value
 
-    const content = "hello world"
-
-    axios.post('http://localhost:5000/blogs', {
-            content,
+    axios.post('http://localhost:5000/blogs/', {
+            title,
+            body
         })
         .then(response => {
             init()
         })
 })
 
-// updateButton.addEventListener('click', function () {
-//     axios.put('http://localhost:5000/blogs/:id')
-// })
+updateButton.addEventListener('click', function () {
+    const title = document.querySelector('.newPostTitle')
+    const body = document.querySelector('.newPostBody')
+    const id = document.querySelector('.postBody')
+    const id2 = id.getAttribute('data-id')
+    
+    axios.put(`http://localhost:5000/blogs/${id2}`, {
+            title: title.value,
+            body: body.value
+        })
+        .then(response => {
+            console.log(response.data)
+            init()
+        })
+})
 
-// removeButton.addEventListener('click', function () {
-//     axios.delete('http://localhost:5000/blogs/:id')
-// })
+removeButton.addEventListener('click', function () {
+    const id = document.querySelector('.postBody')
+    const id2 = id.getAttribute('data-id')
+    axios.delete(`http://localhost:5000/blogs/${id2}`)
+        .then(() => {
+            init()
+        })
+})
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// document.querySelector('#destroy-button').addEventListener('click', () => {
+//     const container = document.querySelector('#destroy-container')
+//     const deleteInput = document.querySelector('#destroy-id-input').value
 
-
-// axios.post('http://localhost:5000/blogs', {
-//         id: uuid(),
-//         title: createFormPostTitle.value,
-//         body: createFormPostBody.value
+//     axios.delete(`${baseURL}/notes/${deleteInput}`)
+//     .then(result => {
+//       container.innerHTML = `
+//       <code>${JSON.stringify(result.data)}</code>`
 //     })
-//     .then((response) => {
-//         display.innerHTML = response.data
-//     })
-//     .catch(error => {
-//         error.response = "Please complete all fields!"
-//         display.innerHTML = error.response
-//     })
+//   })
 
-
-
-
-
-
-
-
-
-
-
-//   .addEventListener('click', function () {
-//     const entryForm =
-//         `<form>
-// <label for="title">Post Title</label>
-// <input id="title" class="newPostTitle" type="text"></input><br>
-// <label for="body">Post Body</label>
-// <input id="body" class="newPostBody" type="text"></input>
-// <button type="button" class="createFormButton">Publish</button>
-// </form>`
-
-//     display.innerHTML = entryForm;
-
-//     const createFormPostTitle = document.querySelector('.newPostTitle')
-//     const createFormPostBody = document.querySelector('.newPostBody')
-
-//     const createFormButton = document.querySelector('.createFormButton')
-//     createFormButton.addEventListener('click', function () {
-//         var node = document.createElement("LI");
-//         var textnode = document.createTextNode(createFormPostTitle.value);
-//         node.appendChild(textnode);
-//         document.querySelector(".postIndexList").appendChild(node);
-//         display.innerHTML = `<div>${createFormPostTitle.value}</div><br>
-// ${createFormPostBody.value}`
-//     })
-// })
+//   let elementPos = characters.map(function (x) {
+//     return x.id;
+//   }).indexOf(req.params.id);
+//   var objectFound = characters[elementPos];
+//   let thisOtherOne = characters.splice(objectFound, 1)

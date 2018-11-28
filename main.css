@@ -14,9 +14,18 @@ div {
     height: 100%;
 }
 
+.postIndexList {
+    font-size:25px;
+}
+
 /* Post Bodies */
 .postBodies {
     height: 100%;
+}
+.postBody {
+    height:100%;
+    font-size:40px;
+    text-align:center;
 }
 
 .bodyMain {
@@ -35,6 +44,19 @@ div {
     height: 65vh;
 }
 
+.newPostBody {
+    flex:wrap;
+    width:70%;
+}
+.newPostTitle {
+    width: 20%;
+}
+
+.entryForm {
+    text-align:center;
+    font-size:14px;
+}
+
 /* postBody buttons */
 .bodyButtons {
     height:20%;
@@ -43,6 +65,10 @@ div {
     display:flex;
     justify-content:center;
     margin:30px;
+}
+
+.createFormButton {
+    float:right;
 }
 
 .updateButton {

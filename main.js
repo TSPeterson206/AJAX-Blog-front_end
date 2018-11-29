@@ -18,7 +18,7 @@ function setDisplay(post){
 
 // POPULATE POST LIST
 function init() {
-    axios.get('http://localhost:5000/blogs')
+    axios.get('https://obscure-earth-94945.herokuapp.com/blogs')
         .then(response => {
 
             const allPosts = response.data.data
@@ -38,7 +38,7 @@ function init() {
             if(event.target.tagName !== 'A') return
 
             const id = event.target.getAttribute('data-id')
-            axios.get(`http://localhost:5000/blogs/${id}`)
+            axios.get(`https://obscure-earth-94945.herokuapp.com/blogs/${id}`)
             .then(response => {
                 setDisplay(response.data)
             })
@@ -52,7 +52,7 @@ entryForm.addEventListener('submit', function (event) {
     const title = document.querySelector('.newPostTitle').value
     const body = document.querySelector('.newPostBody').value
 
-    axios.post('http://localhost:5000/blogs/', {
+    axios.post('https://obscure-earth-94945.herokuapp.com/blogs/', {
             title,
             body
         })
@@ -67,7 +67,7 @@ updateButton.addEventListener('click', function () {
     const id = document.querySelector('.postBody')
     const id2 = id.getAttribute('data-id')
     
-    axios.put(`http://localhost:5000/blogs/${id2}`, {
+    axios.put(`https://obscure-earth-94945.herokuapp.com/blogs/${id2}`, {
             title: title.value,
             body: body.value
         })
@@ -80,7 +80,7 @@ updateButton.addEventListener('click', function () {
 removeButton.addEventListener('click', function () {
     const id = document.querySelector('.postBody')
     const id2 = id.getAttribute('data-id')
-    axios.delete(`http://localhost:5000/blogs/${id2}`)
+    axios.delete(`https://obscure-earth-94945.herokuapp.com/blogs/${id2}`)
         .then(() => {
             init()
         })
